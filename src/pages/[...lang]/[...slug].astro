@@ -13,7 +13,7 @@ import { SITE_LANG } from "astro:env/server";
 
 export async function getStaticPaths() {
   try {
-    const { data } = (await api.get("cdn/spaces/me", {})) as SpaceObj;
+    const { data } = (await api.get("cdn/spaces/me/", {})) as SpaceObj;
     const locales = [SITE_LANG, ...data.space.language_codes];
 
     /* GET ALL PAGES AND POSTS IN ALL LANGUAGES */
@@ -78,7 +78,7 @@ const localeUrls = translateUrl(Astro.url, locales || [SITE_LANG]);
 
 const meta = {
   title: og_title || "404",
-  description: og_description || "page not found",
+  description: og_description || "page not encontrada",
   og_image: "",
   image: og_image?.filename || "",
 };
