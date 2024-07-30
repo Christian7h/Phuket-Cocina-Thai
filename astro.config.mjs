@@ -10,12 +10,11 @@ import sitemap from "@astrojs/sitemap";
 import netlify from "@astrojs/netlify";
 import vercel from "@astrojs/vercel/serverless";
 
-const env = loadEnv("", process.cwd(), ["STORYBLOK", "NETLIFY"]);
 
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  adapter: env.NETLIFY ? netlify() : vercel(), // vercel() or netlify()
+  adapter:vercel(), // vercel() or netlify()
   integrations: [
     storyblok({
       accessToken: env.STORYBLOK_PREVIEW_TOKEN,
