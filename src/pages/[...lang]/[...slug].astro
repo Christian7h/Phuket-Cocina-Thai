@@ -13,31 +13,32 @@ import { SITE_LANG } from "astro:env/server";
 
 export async function getStaticPaths() {
   try {
-    const { data } = await api.get("cdn/spaces/me", {});
+    const { data } = (await api.get("cdn/spaces/me", {})) as SpaceObj;
     const locales = [SITE_LANG, ...data.space.language_codes];
 
-    const routes = [];
-
-    for (const lang of locales) {
-      const dataLang = lang === SITE_LANG ? "default" : lang;
+    /* GET ALL PAGES AND POSTS IN ALL LANGUAGES */
+    const pages = locales.flatMap(async (lang, index) => {
+      const dataLang = index === 0 ? "default" : lang;
       const settings = await getSettings(lang);
 
       const pages = await getPages(
         dataLang,
         import.meta.env.DEV ? "draft" : "published",
         settings,
-        locales
+        locales,
       );
 
-      const posts = await getPosts(
+      const post = await getPosts(
         dataLang,
         import.meta.env.DEV ? "draft" : "published",
         settings,
-        locales
+        locales,
       );
 
-      routes.push(...pages, ...posts);
-    }
+      return [...pages, ...post];
+    });
+
+    const routes = await Promise.all(pages);
 
     return routes.flat();
   } catch (e) {
@@ -52,7 +53,6 @@ export async function getStaticPaths() {
     ];
   }
 }
-
 let { settings, story, locales } = Astro.props;
 
 if (!settings) {
