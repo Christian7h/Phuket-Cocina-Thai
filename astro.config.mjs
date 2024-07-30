@@ -14,7 +14,7 @@ const env = loadEnv("", process.cwd(), ["STORYBLOK", "NETLIFY"]);
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astrorantethai.vercel.app/",
+  site: "https://localhost:4321/",
   output: "hybrid",
   adapter: vercel(), // vercel() or netlify()
   integrations: [
