@@ -7,7 +7,7 @@ import storyblok from "@storyblok/astro";
 import vue from "@astrojs/vue";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
-import netlify from "@astrojs/netlify";
+//import netlify from "@astrojs/netlify";
 import vercel from "@astrojs/vercel/serverless";
 
 const env = loadEnv("", process.cwd(), ["STORYBLOK", "NETLIFY"]);
@@ -16,7 +16,7 @@ const env = loadEnv("", process.cwd(), ["STORYBLOK", "NETLIFY"]);
 export default defineConfig({
   site: "https://astrorantethai.vercel.app/",
   output: "hybrid",
-  adapter: env.NETLIFY ? netlify() : vercel(), // vercel() or netlify()
+  adapter: vercel(), // vercel() or netlify()
   integrations: [
     storyblok({
       accessToken: env.STORYBLOK_PREVIEW_TOKEN,
