@@ -10,6 +10,7 @@ import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 import Layout from "@layouts/Layout.astro";
 import { translateUrl } from "@util/translate";
 import { SITE_LANG } from "astro:env/server";
+import MapsGoogle from "@components/MapsGoogle.astro";
 
 export async function getStaticPaths() {
   try {
@@ -86,4 +87,5 @@ const meta = {
 
 <Layout meta={meta} {settings} {localeUrls}>
   <StoryblokComponent blok={story} {status} />
+  <MapsGoogle/>
 </Layout>
