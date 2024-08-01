@@ -106,7 +106,6 @@ export const formatPrice = function (price: string) {
   const formatted = parseFloat(price).toLocaleString(LOCALE, {
     style: "currency",
     currency: CURRENCY,
-    maximumFractionDigits: 3, // Cambiado a 3 decimales
   });
 
   // Obtiene el separador decimal según la configuración local
