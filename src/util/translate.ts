@@ -99,20 +99,27 @@ export function mergeOpeningHours(days: OpeningHourStoryblok[], lang: string) {
 }
 
 export const formatPrice = function (price: string) {
+  // Convierte la cadena de texto 'price' a un número flotante y lo formatea según la configuración local
   const formatted = parseFloat(price).toLocaleString(LOCALE, {
     style: "currency",
     currency: CURRENCY,
     maximumFractionDigits: 2,
   });
 
+  // Obtiene el separador decimal según la configuración local
   const decimalSeparator = (1.1).toLocaleString(LOCALE).substring(1, 2);
+
+  // Divide el precio formateado en partes utilizando el separador decimal
   const parts = formatted.split(decimalSeparator);
 
   if (parts.length > 1) {
+    // Si hay una parte decimal, divide en parte entera y parte decimal
     const wholePart = parts[0];
-    const decimalPart = parts[1].replace(/\D/g, "");
+    const decimalPart = parts[1].replace(/\D/g, ""); // Elimina cualquier carácter que no sea un dígito en la parte decimal
+    // Retorna el precio formateado con la parte decimal en un <sup>
     return `<span>${wholePart}<sup class="pl-px opacity-90 font-xxs">${decimalPart}</sup></span>`;
   } else {
+    // Si no hay parte decimal, retorna solo la parte entera del precio
     return `<span>${parts[0]}</span>`;
   }
 };
