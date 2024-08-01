@@ -99,11 +99,14 @@ export function mergeOpeningHours(days: OpeningHourStoryblok[], lang: string) {
 }
 
 export const formatPrice = function (price: string) {
+  const LOCALE = 'es-CL'; // Localización para Chile
+  const CURRENCY = 'CLP'; // Moneda Chilena
+
   // Convierte la cadena de texto 'price' a un número flotante y lo formatea según la configuración local
   const formatted = parseFloat(price).toLocaleString(LOCALE, {
     style: "currency",
     currency: CURRENCY,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 3, // Cambiado a 3 decimales
   });
 
   // Obtiene el separador decimal según la configuración local
