@@ -63,6 +63,18 @@ const lang = getLangFromUrl(Astro.url);
           { name: "twitter:card", content: "summary_large_image" },
           { name: "twitter:title", content: meta.title },
           { name: "twitter:description", content: meta.description },
+          {
+            name: "og:url",
+            content: "https://astrorantethai.vercel.app/", // Reemplaza con la URL de tu sitio
+          },
+          {
+            name: "og:image",
+            content: meta.og_image, // Asegúrate de que `socialImage` sea la URL de la imagen de previsualización
+          },
+          {
+            name: "og:image:alt",
+            content: "Phuket Cocina Thai - A Taste of Thailand", // Una breve descripción de la imagen
+          }
         ],
       }}
     />
