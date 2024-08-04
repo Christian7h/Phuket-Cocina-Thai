@@ -120,6 +120,7 @@ let socialImage = meta.image + "/m/1200x630/smart/filters:format(png)";
           title: meta.title,
           type: "website",
           image: socialImage,
+          url: "https://astrorantethai.vercel.app/" // Reemplaza con la URL de tu sitio
         },
       }}
       extend={{
@@ -135,6 +136,18 @@ let socialImage = meta.image + "/m/1200x630/smart/filters:format(png)";
           { name: "twitter:card", content: "summary_large_image" },
           { name: "twitter:title", content: meta.title },
           { name: "twitter:description", content: meta.description },
+          {
+            name: "og:url",
+            content: "https://astrorantethai.vercel.app/", // Reemplaza con la URL de tu sitio
+          },
+          {
+            name: "og:image",
+            content: socialImage, // Asegúrate de que `socialImage` sea la URL de la imagen de previsualización
+          },
+          {
+            name: "og:image:alt",
+            content: "Phuket Cocina Thai - A Taste of Thailand", // Una breve descripción de la imagen
+          }
         ],
       }}
     />
